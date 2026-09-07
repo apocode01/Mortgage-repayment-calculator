@@ -1,0 +1,7 @@
+@use '../styles/variables';
+
+.calculator_form_wrapper {
+    padding: 1rem;
+    background-color: variables.$white;
+    width: 50%;
+}

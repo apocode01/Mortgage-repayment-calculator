@@ -1,0 +1,7 @@
+@use '../styles/variables';
+
+.results_panel_wrapper {
+    padding: 1rem;
+    background-color: variables.$slate900;
+    width: 50%;
+}
