@@ -1,5 +1,9 @@
+@use '../styles/variables';
+
 .card_wrapper {
     display: flex;
     flex-direction: row;
-    max-width: 50rem;
+    max-width: 60rem;
+    background-color: variables.$white;
+    border-radius: 0.625rem;
 }
