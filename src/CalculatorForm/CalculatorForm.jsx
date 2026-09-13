@@ -11,21 +11,43 @@ function CalculatorForm() {
             </div>
 
             <form className={styles.calculator_form}>
-                <label htmlFor="mortgage-amount">Mortgage Amount</label>
-                <input type="number" id="mortgage-amount"></input>
+                <div className={styles.form_field}>
+                    <label className={styles.form_label} htmlFor="mortgage-amount">Mortgage Amount</label>
+                    <div className={styles.input_wrapper}>
+                        <span className={styles.input_symbol}>£</span>
+                        <input type="number" id="mortgage-amount"></input>
+                    </div>
+                </div>
 
-                <label htmlFor="mortgage-term">Mortgage Term</label>
-                <input type="number" id="mortgage-term"></input>
+                <div className={styles.form_row}>
+                    <div className={styles.form_field}>
+                        <label className={styles.form_label} htmlFor="mortgage-term">Mortgage Term</label>
+                        <div className={styles.input_wrapper}>
+                            <input type="number" id="mortgage-term"></input>
+                            <span className={styles.input_addon}>years</span>
+                        </div>
+                    </div>
 
-                <label htmlFor="mortgage-rate">Interest Rate</label>
-                <input type="number" id="mortgage-rate"></input>
+                    <div className={styles.form_field}>
+                        <label className={styles.form_label} htmlFor="interest-rate">Interest Rate</label>
+                        <div className={styles.input_wrapper}>
+                            <input type="number" id="interest-rate"></input>
+                            <span className={styles.input_addon}>%</span>
+                        </div>
+                    </div>
+                </div>
 
-                <fieldset>
-                    <legend>Mortgage Type</legend>
-                    <input type="radio" id="repayment" name="mortgage-type" value="Repayment"/>
-                    <label htmlFor="repayment">Repayment</label>
-                    <input type="radio" id="interest-only" name="mortgage-type" value="Interest Only"/>
-                    <label htmlFor="interest-only">Interest Only</label>
+                <fieldset className={styles.form_fieldset}>
+                    <legend className={styles.form_label}>Mortgage Type</legend>
+                    <label className={styles.form_fieldset_radio_field}>
+                        <input type="radio" id="repayment" name="mortgage-type" value="Repayment"/>
+                        <span>Repayment</span>
+                    </label>
+
+                    <label className={styles.form_fieldset_radio_field}>
+                        <input type="radio" id="interest-only" name="mortgage-type" value="Interest Only"/>
+                        <span>Interest Only</span>
+                    </label>
                 </fieldset>
 
                 <button className={styles.calculator_form_submit_btn} type="submit">
