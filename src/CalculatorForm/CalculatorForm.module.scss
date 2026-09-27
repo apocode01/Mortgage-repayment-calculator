@@ -9,6 +9,17 @@
     background-color: variables.$white;
     width: 50%;
     border-radius: 0.625rem 0 0 0.625rem;
+
+    @media (max-width: 1000px) {
+        width: 100%;
+        border-radius: 0.625rem 0.625rem 0 0;
+    }
+
+    @media (max-width: 550px) {
+        border-radius: 0;
+        padding: clamp(1.5rem, 3.478vw + 0.804rem, 2rem);
+        height: fit-content;
+    }
 }
 
 .calculator_header {
@@ -16,6 +27,13 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 550px) {
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }
 
 .calculator_title {
@@ -32,6 +50,12 @@
     font-weight: 500;
     color: variables.$slate700;
     text-decoration: underline;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+
+    &:hover {
+        color: variables.$slate900;
+    }
 }
 
 .calculator_form {
@@ -43,6 +67,7 @@
 .form_field {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     flex: 1;
 }
 
@@ -50,7 +75,6 @@
     font-size: 0.9rem;
     font-weight: 500;
     color: variables.$slate700;
-    margin-block-end: 0.5rem;
 }
 
 .input_wrapper {
@@ -82,6 +106,19 @@
         border-bottom-right-radius: 0.2rem;
     }
 
+    &.error {
+        outline-color: variables.$red;
+
+        .input_symbol, .input_addon {
+            background-color: variables.$red;
+            color: variables.$white;
+        }
+    }
+
+    &:hover {
+        outline-color: variables.$slate900;
+    }
+
     &:focus-within {
         outline-color: variables.$lime;
 
@@ -110,10 +147,20 @@ input[type="number"] {
     }
 }
 
+.error_message {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: variables.$red;
+}
+
 .form_row {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+
+    @media (max-width: 550px) {
+        flex-direction: column;
+    }
 }
 
 .form_fieldset {
@@ -123,6 +170,10 @@ input[type="number"] {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+
+    .form_label {
+        margin-block-end: 0.5rem;
+    }
 }
 
 .form_fieldset_radio_field {
@@ -143,6 +194,10 @@ input[type="number"] {
     &:has(input[type="radio"]:checked) {
         outline-color: variables.$lime;
         background-color: rgba(variables.$lime, 0.1);
+    }
+
+    &:hover {
+        outline-color: variables.$lime;
     }
 }
 
@@ -198,4 +253,12 @@ input[type="radio"] {
     color: variables.$slate900;
     cursor: pointer;
     transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: rgba(variables.$lime, 0.5);
+    }
+
+    @media (max-width: 550px) {
+        font-size: clamp(0.97rem, 0.209vw + 0.928rem, 1rem);
+    }
 }

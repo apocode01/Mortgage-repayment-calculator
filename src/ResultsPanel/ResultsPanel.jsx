@@ -1,12 +1,28 @@
-import { use, useState } from "react";
 import styles from "./ResultsPanel.module.scss"
 
-function ResultsPanel() {
+function ResultsPanel({formFilled, calculatedValues}) {
 
-    const [formFilled, setFormFilled] = useState(false);
+    const mortgageAmount = Number(calculatedValues.mortgageAmount)
+    const mortgageTerm = Number(calculatedValues.mortgageTerm)
+    const interestRate = Number(calculatedValues.interestRate)
+
+    const monthlyRate = interestRate / 100 / 12;
+    const totalPayments = mortgageTerm * 12;
+
+    let monthly;
+    let total;
+
+    if (calculatedValues.mortgageType === "Repayment") {
+        monthly = mortgageAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+        total = monthly * totalPayments;
+    }
+    else {
+        monthly = mortgageAmount * monthlyRate;
+        total = (monthly * totalPayments) + mortgageAmount;  
+    }
 
     return (
-        <div className={styles.results_panel_wrapper}>
+        <div className={`${styles.results_panel_wrapper} ${formFilled ? styles.completed : ''}`}>
             {!formFilled ?
                 (
                     <div className={styles.results_empty_wrapper}>
@@ -17,15 +33,20 @@ function ResultsPanel() {
                 )
                 :
                 (
-                    <div>
-                    Your results
+                    <div className={styles.results_completed_wrapper}>
+                        <h2 className={styles.results_completed_title}>Your results</h2>
 
-                    Your results are shown below based on the information you provided. 
-                    To adjust the results, edit the form and click “calculate repayments” again.
-
-                    Your monthly repayments
-
-                    Total you'll repay over the term
+                        <p className={styles.results_completed_description}>
+                            Your results are shown below based on the information you provided. 
+                            To adjust the results, edit the form and click “calculate repayments” again.
+                        </p>
+                        
+                        <div className={styles.results_repayment_wrapper}>
+                            <span className={styles.results_repayment_text}>Your monthly repayments</span>
+                            <span className={styles.results_monthly_repayment}>{monthly.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})}</span>
+                            <span className={styles.results_repayment_text}>Total you'll repay over the term</span>
+                            <span className={styles.results_total_amount}>{total.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})}</span>
+                        </div>
                     </div>
                 )
             }

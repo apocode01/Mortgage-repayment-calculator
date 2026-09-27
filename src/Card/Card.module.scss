@@ -6,4 +6,15 @@
     max-width: 60rem;
     background-color: variables.$white;
     border-radius: 0.625rem;
+
+    @media (max-width: 1000px) {
+        flex-direction: column;
+        max-width: 30rem;
+    }
+
+    @media (max-width: 550px) {
+        max-width: 100%;
+        width: 100%;
+        min-height: 100vh;
+    }
 }

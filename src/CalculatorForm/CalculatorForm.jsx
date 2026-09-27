@@ -1,53 +1,100 @@
 import styles from "./CalculatorForm.module.scss"
 
-function CalculatorForm() {
+function CalculatorForm({
+    handleClear,
+    mortgageAmount, 
+    mortgageTerm, 
+    interestRate, 
+    mortgageType,
+    errors,
+    handleMortgageAmount, 
+    handleMortgageTerm, 
+    handleInterestRate,
+    handleMortgageType,
+    handleSubmit
+}) {
     return (
         <div className={styles.calculator_form_wrapper}>
             <div className={styles.calculator_header}>
                 <h1 className={styles.calculator_title}>Mortgage Calculator</h1>
-                <button className={styles.calculator_clear_btn}>
+                <button className={styles.calculator_clear_btn} onClick={handleClear}>
                     <span>Clear All</span>
                 </button>
             </div>
 
-            <form className={styles.calculator_form}>
+            <form className={styles.calculator_form} onSubmit={handleSubmit}>
                 <div className={styles.form_field}>
                     <label className={styles.form_label} htmlFor="mortgage-amount">Mortgage Amount</label>
-                    <div className={styles.input_wrapper}>
+                    <div className={`${styles.input_wrapper} ${errors.mortgageAmount ? styles.error : ''}`}>
                         <span className={styles.input_symbol}>£</span>
-                        <input type="number" id="mortgage-amount"></input>
+                        <input 
+                            type="number" 
+                            id="mortgage-amount"
+                            value={mortgageAmount}
+                            onChange={handleMortgageAmount}
+                        />
                     </div>
+                    {errors.mortgageAmount && <p className={styles.error_message}>{errors.mortgageAmount}</p>}
                 </div>
 
                 <div className={styles.form_row}>
                     <div className={styles.form_field}>
                         <label className={styles.form_label} htmlFor="mortgage-term">Mortgage Term</label>
-                        <div className={styles.input_wrapper}>
-                            <input type="number" id="mortgage-term"></input>
+                        <div className={`${styles.input_wrapper} ${errors.mortgageTerm ? styles.error : ''}`}>
+                            <input 
+                                type="number" 
+                                id="mortgage-term"
+                                value={mortgageTerm}
+                                onChange={handleMortgageTerm}
+                            />
                             <span className={styles.input_addon}>years</span>
                         </div>
+                        {errors.mortgageTerm && <p className={styles.error_message}>{errors.mortgageTerm}</p>}
                     </div>
 
                     <div className={styles.form_field}>
                         <label className={styles.form_label} htmlFor="interest-rate">Interest Rate</label>
-                        <div className={styles.input_wrapper}>
-                            <input type="number" id="interest-rate"></input>
+                        <div className={`${styles.input_wrapper} ${errors.interestRate ? styles.error : ''}`}>
+                            <input 
+                                type="number" 
+                                id="interest-rate"
+                                value={interestRate}
+                                onChange={handleInterestRate}
+                            />
                             <span className={styles.input_addon}>%</span>
                         </div>
+                        {errors.interestRate && <p className={styles.error_message}>{errors.interestRate}</p>}
                     </div>
                 </div>
 
                 <fieldset className={styles.form_fieldset}>
                     <legend className={styles.form_label}>Mortgage Type</legend>
+
                     <label className={styles.form_fieldset_radio_field}>
-                        <input type="radio" id="repayment" name="mortgage-type" value="Repayment"/>
+                        <input 
+                            type="radio" 
+                            id="repayment" 
+                            name="mortgage-type" 
+                            value="Repayment"
+                            checked={mortgageType === "Repayment"}
+                            onChange={handleMortgageType}
+                        />
                         <span>Repayment</span>
                     </label>
 
                     <label className={styles.form_fieldset_radio_field}>
-                        <input type="radio" id="interest-only" name="mortgage-type" value="Interest Only"/>
+                        <input 
+                            type="radio" 
+                            id="interest-only" 
+                            name="mortgage-type" 
+                            value="Interest Only"
+                            checked={mortgageType === "Interest Only"}
+                            onChange={handleMortgageType}
+                        />
                         <span>Interest Only</span>
                     </label>
+
+                    {errors.mortgageType && <p className={styles.error_message}>{errors.mortgageType}</p>}
                 </fieldset>
 
                 <button className={styles.calculator_form_submit_btn} type="submit">

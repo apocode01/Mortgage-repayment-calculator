@@ -8,7 +8,22 @@
     background-color: variables.$slate900;
     width: 50%;
     border-radius: 0 0.625rem 0.625rem 2.5rem;
-    padding-inline: 2rem;
+    padding: 2rem;
+
+    &.completed {
+        justify-content: flex-start;
+    }
+
+    @media (max-width: 1000px) {
+        width: 100%;
+        border-radius: 0.625rem;
+    }
+
+    @media (max-width: 550px) {
+        flex: 1;
+        border-radius: 0;
+        padding: clamp(1.5rem, 3.478vw + 0.804rem, 2rem);
+    }
 }
 
 .results_empty_wrapper {
@@ -31,4 +46,61 @@
     font-size: 0.9rem;
     font-weight: 500;
     text-align: center;
+}
+
+.results_completed_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.results_completed_title {
+    color: variables.$white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-block-end: 1rem;
+}
+
+.results_completed_description {
+    color: variables.$slate300;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-block-end: 2rem;
+}
+
+.results_repayment_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    background-color: variables.$slate999;
+    padding: 2rem;
+    border-radius: 0.35rem;
+    border-top: solid 3px variables.$lime;
+
+    @media (max-width: 550px) {
+        padding: clamp(1.5rem, 3.478vw + 0.804rem, 2rem);
+    }
+}
+
+.results_repayment_text {
+    color: variables.$slate300;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.results_monthly_repayment {
+    color: variables.$lime;
+    font-size: 2.7rem;
+    font-weight: 700;
+    padding-block-end: 1rem;
+    border-bottom: 1px solid variables.$slate700;
+}
+
+.results_total_amount {
+    color: variables.$white;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
