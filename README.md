@@ -8,4 +8,4 @@ This is a solution to the [Mortgage repayment calculator challenge on Frontend M
 
 ### Site URL
 
-[Mortgage repayment calculator](https://apocode01-mortgage-repayment-calculator.netlify.app/)
+[Mortgage repayment calculator](https://apocode01-mortgage-repayment-calc.netlify.app/)
