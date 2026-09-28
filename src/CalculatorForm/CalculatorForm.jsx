@@ -17,7 +17,7 @@ function CalculatorForm({
         <div className={styles.calculator_form_wrapper}>
             <div className={styles.calculator_header}>
                 <h1 className={styles.calculator_title}>Mortgage Calculator</h1>
-                <button className={styles.calculator_clear_btn} onClick={handleClear}>
+                <button type="button" className={styles.calculator_clear_btn} onClick={handleClear}>
                     <span>Clear All</span>
                 </button>
             </div>
